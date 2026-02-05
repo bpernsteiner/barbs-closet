@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef7fb"/>
+      <stop offset="30%" stop-color="#f0e4f7"/>
+      <stop offset="60%" stop-color="#e8f4fd"/>
+      <stop offset="100%" stop-color="#fef0e4"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8a0bf"/>
+      <stop offset="100%" stop-color="#c8b6e2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Glass card -->
+  <rect x="80" y="80" width="1040" height="470" rx="32" fill="white" opacity="0.55" stroke="white" stroke-opacity="0.6" stroke-width="1"/>
+  <!-- Logo circle -->
+  <circle cx="260" cy="315" r="120" fill="url(#accent)" opacity="0.9"/>
+  <circle cx="260" cy="315" r="120" fill="none" stroke="white" stroke-width="2" opacity="0.5"/>
+  <!-- Hanger in logo -->
+  <path d="M260 242 C260 236 266 232 270 232 C274 232 278 235 278 239 C278 243 274 246 270 246" stroke="#d4789c" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M260 246 L232 278 L288 278 Z" stroke="#d4789c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M240 278 L237 284 C237 284 240 287 250 290 L245 328 C245 328 253 334 260 334 C267 334 275 328 275 328 L270 290 C280 287 283 284 283 284 L280 278" fill="white" opacity="0.6"/>
+  <text x="260" y="322" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="30" font-weight="600" fill="#2d2235" opacity="0.7">B</text>
+  <!-- Text -->
+  <text x="460" y="280" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="72" font-weight="700" fill="#2d2235">Barb's Closet</text>
+  <text x="460" y="350" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="32" fill="#8b7e96">Your Personal Fashion Assistant</text>
+  <text x="460" y="420" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="24" fill="#c8b6e2">AI-Powered Wardrobe · Smart Outfits · Weather Styling</text>
+</svg>
