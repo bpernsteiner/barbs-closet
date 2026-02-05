@@ -45,10 +45,16 @@ export default function GatePage() {
             value={key}
             onChange={(e) => setKey(e.target.value)}
             placeholder="Access Key"
-            className="w-full glass rounded-xl px-4 py-3 text-sm text-center
-              focus:outline-none focus:ring-2 focus:ring-pink-dark/30
-              placeholder:text-muted/50"
-            autoFocus
+            className="w-full rounded-xl px-4 py-3 text-center
+              focus:outline-none focus:ring-2 focus:ring-pink-dark/30"
+            style={{
+              background: 'rgba(255, 255, 255, 0.7)',
+              border: '1px solid rgba(255, 255, 255, 0.8)',
+              color: '#2d2235',
+              fontSize: '16px', // Prevents iOS zoom on focus
+              WebkitAppearance: 'none',
+            }}
+            autoComplete="off"
           />
           {error && (
             <p className="text-red-400 text-xs">{error}</p>
