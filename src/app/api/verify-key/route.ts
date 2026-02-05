@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 
-const ACCESS_KEY = process.env.ACCESS_KEY || 'Pernsteiner123';
-
 export async function POST(request: Request) {
   const { key } = await request.json();
+  const accessKey = (process.env.ACCESS_KEY || 'Pernsteiner123').trim();
+  const inputKey = (key || '').trim();
 
-  if (key === ACCESS_KEY) {
+  if (inputKey === accessKey) {
     const response = NextResponse.json({ success: true });
     response.cookies.set('barbs-access-key', 'granted', {
       httpOnly: true,
