@@ -9,7 +9,7 @@ export default auth((req) => {
   const hasAccessKey = req.cookies.get("barbs-access-key")?.value === "granted";
 
   // Public paths that don't require anything
-  const publicPaths = ["/gate", "/api/auth"];
+  const publicPaths = ["/gate", "/api/auth", "/api/verify-key"];
   const isPublic = publicPaths.some((p) => nextUrl.pathname.startsWith(p));
   if (isPublic) return NextResponse.next();
 
