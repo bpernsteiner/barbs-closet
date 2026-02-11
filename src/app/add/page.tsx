@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import ImageUpload from '@/components/ImageUpload';
-import { AnalysisResult, Category } from '@/lib/types';
-import { compressImage, fileToBase64 } from '@/lib/utils';
+import { Category } from '@/lib/types';
+import { compressImage } from '@/lib/utils';
 import { addItem, generateId } from '@/lib/storage';
 
 const categories: Category[] = ['tops', 'bottoms', 'dresses', 'outerwear', 'shoes', 'accessories'];
@@ -15,9 +15,6 @@ export default function AddItemPage() {
   const router = useRouter();
   const [preview, setPreview] = useState<string | null>(null);
   const [imageBase64, setImageBase64] = useState<string | null>(null);
-  const [analyzing, setAnalyzing] = useState(false);
-  const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
   const [name, setName] = useState('');
   const [category, setCategory] = useState<Category>('tops');
@@ -27,36 +24,9 @@ export default function AddItemPage() {
   const [occasions, setOccasions] = useState<string[]>([]);
 
   async function handleImageSelected(file: File) {
-    setError(null);
     const compressed = await compressImage(file);
-    const fullBase64 = await fileToBase64(file);
     setPreview(compressed);
     setImageBase64(compressed);
-
-    setAnalyzing(true);
-    try {
-      const res = await fetch('/api/analyze-image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imageBase64: fullBase64 }),
-      });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || 'Analysis failed');
-      }
-      const result: AnalysisResult = await res.json();
-      setAnalysis(result);
-      setName(result.name);
-      setCategory(result.category);
-      setColor(result.color);
-      setTexture(result.texture);
-      setStyle(result.style);
-      setOccasions(result.occasions);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Analysis failed');
-    } finally {
-      setAnalyzing(false);
-    }
   }
 
   function toggleOccasion(occ: string) {
@@ -83,20 +53,7 @@ export default function AddItemPage() {
 
       <ImageUpload onImageSelected={handleImageSelected} preview={preview} />
 
-      {analyzing && (
-        <div className="glass rounded-2xl p-6 text-center">
-          <div className="animate-spin inline-block w-7 h-7 border-2 border-pink border-t-transparent rounded-full mb-2"></div>
-          <p className="text-muted text-xs">AI is analyzing your clothing...</p>
-        </div>
-      )}
-
-      {error && (
-        <div className="glass rounded-2xl p-4 text-red-500 text-xs border border-red-200">
-          {error}
-        </div>
-      )}
-
-      {(analysis || preview) && !analyzing && (
+      {preview && (
         <div className="space-y-4">
           <div>
             <label className="block text-xs text-muted mb-1 font-medium">Name</label>
